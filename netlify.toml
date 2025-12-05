@@ -3,6 +3,8 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+  [plugins.inputs]
+    # Let the plugin handle everything automatically
 
 [build.environment]
   NODE_VERSION = "18"
