@@ -1,0 +1,9 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Exclude files from export
+node_modules/ export-ignore
+.next/ export-ignore
+.env export-ignore
+.env.local export-ignore
+

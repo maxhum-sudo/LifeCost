@@ -1,0 +1,155 @@
+{
+  "questions": [
+    {
+      "id": "location",
+      "text": "Where do you live?",
+      "order": 1,
+      "type": "multiple-choice",
+      "options": [
+        {"id": "yyc", "label": "Calgary", "baseCost": 0},
+        {"id": "yyz", "label": "Toronto", "baseCost": 0},
+        {"id": "yvr", "label": "Vancouver", "baseCost": 0},
+        {"id": "yul", "label": "Montreal", "baseCost": 0},
+        {"id": "other", "label": "Other", "baseCost": 0}
+      ],
+      "conditionals": []
+    },
+    {
+      "id": "commute",
+      "text": "How long do you want your commute to be?",
+      "order": 2,
+      "type": "slider",
+      "slider": {
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "leftLabel": "Suburb (Longer Commute)",
+        "rightLabel": "City Center (Shorter Commute)"
+      },
+      "conditionals": []
+    },
+    {
+      "id": "housing_type",
+      "text": "What is your desired housing type in your 30s?",
+      "order": 3,
+      "type": "multiple-choice",
+      "options": [
+        {"id": "apartment", "label": "Apartment (1000 sqft)", "multiplier": 1.0, "sqft": 1000},
+        {"id": "townhome", "label": "Townhome (1500 sqft)", "multiplier": 1.2, "sqft": 1500},
+        {"id": "duplex", "label": "Duplex (1800 sqft)", "multiplier": 1.3, "sqft": 1800},
+        {"id": "detached", "label": "Detached (2000 sqft)", "multiplier": 1.4, "sqft": 2000},
+        {"id": "large_detached", "label": "Large Detached (3000 sqft)", "multiplier": 1.4, "sqft": 3000},
+        {"id": "extra_large_detached", "label": "Extra Large Detached (4000 sqft)", "multiplier": 1.4, "sqft": 4000}
+      ],
+      "conditionals": []
+    },
+    {
+      "id": "home_age",
+      "text": "What age of home would you like to live in?",
+      "order": 4,
+      "type": "multiple-choice",
+      "options": [
+        {"id": "brand_new", "label": "Brand new", "multiplier": 1.2},
+        {"id": "under_10", "label": "<10 years old", "multiplier": 1.0},
+        {"id": "10_20", "label": "10-20 years old", "multiplier": 0.9},
+        {"id": "20_40", "label": "20-40 years old", "multiplier": 0.85},
+        {"id": "40_plus", "label": "40+ years old", "multiplier": 0.8}
+      ],
+      "conditionals": []
+    },
+    {
+      "id": "num_cars",
+      "text": "How many cars would your household like to own?",
+      "order": 5,
+      "type": "multiple-choice",
+      "options": [
+        {"id": "0", "label": "0", "baseCost": 0},
+        {"id": "1", "label": "1", "baseCost": 12000},
+        {"id": "2", "label": "2", "baseCost": 24000},
+        {"id": "3", "label": "3", "baseCost": 36000}
+      ],
+      "conditionals": []
+    },
+    {
+      "id": "no_car_transport",
+      "text": "How do you plan to get around?",
+      "order": 6,
+      "type": "multiple-choice",
+      "showIf": {"question": "num_cars", "answer": "0"},
+      "options": [
+        {"id": "public_transit", "label": "Public Transit", "baseCost": 1200},
+        {"id": "bike_walk", "label": "Bike/Walk", "baseCost": 300},
+        {"id": "rideshare", "label": "Rideshare (Uber/Lyft)", "baseCost": 6000}
+      ],
+      "conditionals": []
+    },
+    {
+      "id": "car_usage",
+      "text": "How often do you plan on driving?",
+      "order": 7,
+      "type": "multiple-choice",
+      "showIf": {"question": "num_cars", "answer": "1"},
+      "options": [
+        {"id": "everyday", "label": "Everyday", "multiplier": 1.0},
+        {"id": "3_6_times", "label": "3-6 times per week", "multiplier": 0.8},
+        {"id": "1_2_times", "label": "1-2 times per week", "multiplier": 0.6},
+        {"id": "couple_times_month", "label": "A couple times per month", "multiplier": 0.4}
+      ],
+      "conditionals": []
+    },
+    {
+      "id": "food",
+      "text": "What's your food situation?",
+      "order": 8,
+      "type": "multiple-choice",
+      "options": [
+        {"id": "cook_all", "label": "Cook Most Meals", "baseCost": 3600},
+        {"id": "cook_some", "label": "Cook Some, Eat Out Some", "baseCost": 6000},
+        {"id": "eat_out", "label": "Eat Out Frequently", "baseCost": 12000},
+        {"id": "meal_delivery", "label": "Meal Delivery Services", "baseCost": 9600}
+      ],
+      "conditionals": [
+        {
+          "if": {"question": "location", "answer": "yyz"},
+          "multiply": 1.2
+        },
+        {
+          "if": {"question": "location", "answer": "yvr"},
+          "multiply": 1.15
+        }
+      ]
+    },
+    {
+      "id": "entertainment",
+      "text": "How much do you spend on entertainment?",
+      "order": 9,
+      "type": "multiple-choice",
+      "options": [
+        {"id": "minimal", "label": "Minimal ($50/month)", "baseCost": 600},
+        {"id": "moderate", "label": "Moderate ($150/month)", "baseCost": 1800},
+        {"id": "active", "label": "Active ($300/month)", "baseCost": 3600},
+        {"id": "high", "label": "High ($500/month)", "baseCost": 6000}
+      ],
+      "conditionals": []
+    }
+  ],
+  "locationPricing": {
+    "yyc": {
+      "suburb": 300,
+      "cityCenter": 400
+    },
+    "yyz": {
+      "suburb": 700,
+      "cityCenter": 1000
+    },
+    "yvr": {
+      "suburb": 900,
+      "cityCenter": 1200
+    },
+    "yul": {
+      "suburb": 300,
+      "cityCenter": 500
+    }
+  },
+  "housingSqft": 1500
+}
